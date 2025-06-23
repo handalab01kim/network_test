@@ -10,9 +10,11 @@ services:
     container_name: router_a
     cap_add: # 네트워크 설정 허용
       - NET_ADMIN
+    ports:
+      - "8080:8080"
     networks:
-      link-host-a:
-        ipv4_address: 172.16.0.2
+      # link-host-a:
+      #   ipv4_address: 172.16.0.2
       link-a-b:
         ipv4_address: 172.16.1.2
       net-a:
@@ -55,11 +57,11 @@ services:
         ipv4_address: 172.16.200.3
 
 networks:
-  link-host-a:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.16.0.0/24
+  # link-host-a:
+  #   driver: bridge
+  #   ipam:
+  #     config:
+  #       - subnet: 172.16.0.0/24
 
   link-a-b:
     driver: bridge
