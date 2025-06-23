@@ -13,6 +13,8 @@ services:
     ports:
       - "8080:8080"
     networks:
+      host-connection:
+        ipv4_address: 172.30.1.123  # 외부에서 접근할 IP
       # link-host-a:
       #   ipv4_address: 172.16.0.2
       link-a-b:
@@ -57,6 +59,14 @@ services:
         ipv4_address: 172.16.200.3
 
 networks:
+  host-connection:
+    driver: macvlan
+    driver_opts:
+      parent: enx00e04c4e3718
+    ipam:
+      config:
+        - subnet: 172.30.1.0/24
+          gateway: 172.30.1.1
   # link-host-a:
   #   driver: bridge
   #   ipam:
